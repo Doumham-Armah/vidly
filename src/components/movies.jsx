@@ -29,12 +29,14 @@ class Movies extends Component {
   };
 
   render() {
+
     const { length: count } = this.state.movies;
     //rename movies to allMovies
     const {movies: allMovies, pageSize, currentPage} = this.state
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
+    //retuns array of movies for a page number
     const movies = paginate(allMovies, currentPage, pageSize)
 
     return (
