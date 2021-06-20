@@ -5,6 +5,7 @@ const Pagination = (props) => {
 
     const { moviesCount, pageSize, currentPage, onPageChange } = props
 
+    console.log(currentPage)
     //this is the numbers of pages we will need
     const pagesCount = Math.ceil(moviesCount / pageSize)
     
