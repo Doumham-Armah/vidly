@@ -6,18 +6,20 @@ import { paginate } from '../utils/paginate'
 import ListGroup from "./common/ListGroup";
 import { getGenres } from "../services/fakeGenreService";
 import MoviesTable from "./moviesTable";
+import _ from 'lodash'
 
 class Movies extends Component {
   state = {
     movies: [],
     genres: [],
     pageSize: 4,
-    currentPage: 1
+    currentPage: 1,
+    sortBy: {colName: 'title', order: 'asc' }
   };
 
   componentDidMount= () => {
-
-    const genres = [{name: "All Genres"}, ...getGenres()]
+    //added empty string id to handle mapping warning for key in li in ListGroup.jsx
+    const genres = [{_id: "", name: "All Genres"}, ...getGenres()]
     this.setState({ movies: getMovies(), genres: genres })
   }
 
@@ -42,12 +44,16 @@ class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 })
   }
 
+  handleSort = colName =>{
+    this.setState({sortBy : {colName: colName, order: 'asc'} })
+  }
+
   render() {
 
     const { length: count } = this.state.movies;
 
     //rename movies to allMovies
-    const {movies: allMovies, pageSize, currentPage, selectedGenre} = this.state
+    const {movies: allMovies, pageSize, currentPage, selectedGenre, sortBy} = this.state
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
@@ -56,8 +62,11 @@ class Movies extends Component {
     const filteredMovies = selectedGenre && selectedGenre._id
      ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
    
-    //retuns array of movies for a page number
-    const movies = paginate(filteredMovies, currentPage, pageSize)
+    // sort movies
+    const sortedMovies = _.orderBy(filteredMovies, [sortBy.colName], [sortBy.order])
+
+    // retuns array of movies for a page number
+    const movies = paginate(sortedMovies, currentPage, pageSize)
 
     return (
       <div className="row">
@@ -75,8 +84,9 @@ class Movies extends Component {
           <MoviesTable
           movies={movies}
           onLike={this.handleLike}
-          onDelete={this.handleDelete}/>
-          
+          onDelete={this.handleDelete}
+          onSort = {this.handleSort}/>
+
           <Pagination
            moviesCount={filteredMovies.length}
            pageSize={this.state.pageSize}
