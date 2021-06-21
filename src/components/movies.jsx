@@ -5,6 +5,7 @@ import Pagination from './common/Pagination'
 import { paginate } from '../utils/paginate'
 import ListGroup from "./common/ListGroup";
 import { getGenres } from "../services/fakeGenreService";
+import { filter } from "lodash";
 
 class Movies extends Component {
   state = {
@@ -36,7 +37,8 @@ class Movies extends Component {
   };
 
   handleGenreSelect = genre => {
-    console.log(genre)
+    const filteredMovies = this.state.movies.filter(m => m.genre.name === genre)
+    this.setState( {movies: filteredMovies})
   }
 
   render() {
