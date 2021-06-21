@@ -2,7 +2,7 @@ import React from 'react';
 
 const ListGroup = (props) => {
     
-    const { items, onItemSelect } = props
+    const { items, selectedGenre, onItemSelect } = props
     
     
     return ( 
@@ -10,7 +10,7 @@ const ListGroup = (props) => {
             {items.map(item => 
             <li className="list-group-item"
              key={item._id}
-             onClick={() => onItemSelect(item.name)}>
+             onClick={() => onItemSelect(item)}>
                 {item.name}</li>)}
             
         </ul>
