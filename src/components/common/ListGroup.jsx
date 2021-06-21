@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListGroup = () => {
+const ListGroup = (props) => {
     
     
     return ( 
