@@ -15,7 +15,9 @@ class Movies extends Component {
   };
 
   componentDidMount= () => {
-    this.setState({ movies: getMovies(), genres: getGenres() })
+
+    const genres = [{name: "All Genres"}, ...getGenres()]
+    this.setState({ movies: getMovies(), genres: genres })
   }
 
   handlePageChange = pageNum => {
@@ -36,19 +38,21 @@ class Movies extends Component {
   };
 
   handleGenreSelect = genre => {
-    this.setState({ selectedGenre: genre })
+    this.setState({ selectedGenre: genre, currentPage: 1 })
   }
 
   render() {
 
     const { length: count } = this.state.movies;
+    
     //rename movies to allMovies
     const {movies: allMovies, pageSize, currentPage, selectedGenre} = this.state
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
-    //returns movies filtered by genre
-    const filteredMovies = selectedGenre
+    // returns movies filtered by genre
+    // if selected genre and its id are truthy filter, else return all movies
+    const filteredMovies = selectedGenre && selectedGenre._id
      ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
    
     //retuns array of movies for a page number
