@@ -3,6 +3,7 @@ import Like from "./common/like";
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from './common/Pagination'
 import { paginate } from '../utils/paginate'
+import ListGroup from "./common/ListGroup";
 
 class Movies extends Component {
   state = {
@@ -78,6 +79,7 @@ class Movies extends Component {
             ))}
           </tbody>
         </table>
+        <ListGroup/>
         <Pagination
          moviesCount={count}
          pageSize={this.state.pageSize}

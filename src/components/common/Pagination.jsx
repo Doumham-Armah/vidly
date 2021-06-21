@@ -34,7 +34,7 @@ Pagination.propTypes = {
     moviesCount: propTypes.number.isRequired,
     pageSize: propTypes.number.isRequired,
     currentPage: propTypes.number.isRequired,
-    onPageChange: propTypes.number.isRequired
+    onPageChange: propTypes.func.isRequired
 }
 
 export default Pagination;
