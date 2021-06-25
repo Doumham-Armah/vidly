@@ -5,7 +5,6 @@ import Customers from "./components/customers"
 import Rentals from './components/rentals'
 import notFound from './components/notFound'
 import "./App.css";
-import { reduceRight } from "lodash";
 
 class App extends Component {
   render() {
@@ -16,7 +15,8 @@ class App extends Component {
           <Route path="/customers" component={Customers}></Route>
           <Route path="/rentals" component={Rentals}></Route>
           <Route path="/not-found" component={notFound}></Route>
-          <Redirect from='/' to='/movies' />
+          <Redirect from='/' exact to='/movies' />
+          <Redirect to='/not-found' />
         </Switch>
       </main>
     );
