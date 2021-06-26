@@ -3,7 +3,7 @@ import TableBody from "./tableBody";
 import TableHeader from "./tableHeaders";
 
 const Table = (props) => {
-  const { columns, sortColumn, onSort, data } = this.props;
+  const { columns, data, sortColumn, onSort } = props;
 
   return (
     <table className="table">
