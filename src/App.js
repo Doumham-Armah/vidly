@@ -4,8 +4,8 @@ import Movies from "./components/movies";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import notFound from "./components/notFound";
-import "./App.css";
 import NavBar from "./components/navBar";
+import "./App.css";
 
 class App extends Component {
   render() {
