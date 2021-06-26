@@ -1,4 +1,3 @@
-import { sortBy } from "lodash";
 import React, { Component } from "react";
 import Like from "./common/like";
 import TableBody from "./common/tableBody";
@@ -30,7 +29,7 @@ class moviesTable extends Component {
   ];
 
   render() {
-    const { movies, sortColumn, onLike, onDelete, onSort } = this.props;
+    const { movies, sortColumn, onSort } = this.props;
 
     return (
       <table className="table">
