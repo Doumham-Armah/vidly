@@ -3,12 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <Link class="navbar-brand" to="/">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link className="navbar-brand" to="/">
         Vidly
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -16,19 +16,19 @@ const NavBar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <div className="navbar-nav">
-          <NavLink class="nav-item nav-link" to="/movies">
-            Movies <span class="sr-only">(current)</span>
+          <NavLink className="nav-item nav-link" to="/movies">
+            Movies <span className="sr-only">(current)</span>
           </NavLink>
-          <NavLink class="nav-link" to="/customers">
-            Customers <span class="sr-only">(current)</span>
+          <NavLink className="nav-link" to="/customers">
+            Customers <span className="sr-only">(current)</span>
           </NavLink>
-          <NavLink class="nav-link" to="/rentals">
-            Rentals <span class="sr-only">(current)</span>
+          <NavLink className="nav-link" to="/rentals">
+            Rentals <span className="sr-only">(current)</span>
           </NavLink>
         </div>
       </div>
