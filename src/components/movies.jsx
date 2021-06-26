@@ -48,6 +48,14 @@ class Movies extends Component {
   };
 
   getPagedData = () => {
+    const {
+      movies: allMovies,
+      pageSize,
+      currentPage,
+      selectedGenre,
+      sortColumn,
+    } = this.state;
+
     // returns movies filtered by genre
     // if selected genre and its id are truthy filter, else return all movies
     const filteredMovies =
@@ -71,13 +79,7 @@ class Movies extends Component {
     const { length: count } = this.state.movies;
 
     //rename movies to allMovies
-    const {
-      movies: allMovies,
-      pageSize,
-      currentPage,
-      selectedGenre,
-      sortColumn,
-    } = this.state;
+    const { sortColumn } = this.state;
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
