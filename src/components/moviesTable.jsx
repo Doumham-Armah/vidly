@@ -1,35 +1,28 @@
+import { sortBy } from "lodash";
 import React, { Component } from "react";
 import Like from "./common/like";
+import TableHeader from "./common/tableHeaders";
 
 class moviesTable extends Component {
-  raiseSort = (path) => {
-    const sortBy = { ...this.props.sortBy };
-    if (sortBy.colName === path)
-      sortBy.order = sortBy.order === "asc" ? "desc" : "asc";
-    else {
-      sortBy.colName = path;
-      sortBy.order = "asc";
-    }
-    this.props.onSort(sortBy);
-  };
+  columns = [
+    { colName: "title", label: "Title" },
+    { colName: "genre.name", label: "Genre" },
+    { colName: "numberInStock", label: "Stock" },
+    { colName: "dailyRentalRate", label: "Rate" },
+    { key: "like" },
+    { key: "delete" },
+  ];
 
   render() {
-    const { movies, onLike, onDelete } = this.props;
+    const { movies, sortColumn, onLike, onDelete, onSort } = this.props;
 
     return (
       <table className="table">
-        <thead>
-          <tr>
-            <th onClick={() => this.raiseSort("title")}>Title</th>
-            <th onClick={() => this.raiseSort("genre.name")}>Genre</th>
-            <th onClick={() => this.raiseSort("numberInStock")}>Stock</th>
-            <th onClick={() => this.raiseSort("dailyRentalRate")}>
-              Daily Rental Rate
-            </th>
-            <th />
-            <th />
-          </tr>
-        </thead>
+        <TableHeader
+          columns={this.columns}
+          sortColumn={sortColumn}
+          onSort={onSort}
+        />
         <tbody>
           {movies.map((movie) => (
             <tr key={movie._id}>
