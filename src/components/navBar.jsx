@@ -30,6 +30,9 @@ const NavBar = () => {
           <NavLink className="nav-link" to="/rentals">
             Rentals <span className="sr-only">(current)</span>
           </NavLink>
+          <NavLink className="nav-link" to="/login">
+            Login <span className="sr-only">(current)</span>
+          </NavLink>
         </div>
       </div>
     </nav>
