@@ -8,13 +8,21 @@ class LoginForm extends Component {
     errors: {},
   };
 
-  validate = () => {};
+  validate = () => {
+    const errors = {};
+
+    const { username, password } = this.state;
+    if (username.trim() === "") errors.username = "Username is required";
+    if (password.trim() === "") errors.password = "Password is required";
+
+    return Object.keys(errors).length === 0 ? null : errors;
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
     const errors = this.validate();
-    this.setState({ errors });
+    this.setState({ errors: errors || {} });
     if (errors) return;
 
     //call the server
@@ -29,22 +37,24 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, errors } = this.state;
     return (
       <div>
         <h1>Login</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <Input
             name="username"
             label="Username"
             value={username}
             handleChange={this.handleChange}
+            error={errors.username}
           />
           <Input
             name="password"
             label="Password"
             value={password}
             handleChange={this.handleChange}
+            error={errors.password}
           />
           <button className="btn btn-primary">Login</button>
         </form>
